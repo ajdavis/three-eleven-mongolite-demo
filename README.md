@@ -17,7 +17,7 @@ Install MongoDB (at least 3.2) and run it on your local machine listening on the
 Get the data
 ------------
 
-The data subset required for this demo is included in the repo: ``three_eleven.bson``. The R code ``mongolite-demo.R`` shows how to load that BSON dump into MongoDB with Mongolite.
+The data subset required for this demo is included in the repo: [three_eleven.bson](https://ajdavis.github.io/three-eleven-mongolite-demo/three_eleven.bson). The R code [mongolite-demo.R](https://ajdavis.github.io/three-eleven-mongolite-demo/mongolite-demo.R) shows how to load that BSON dump into MongoDB with Mongolite.
 
 The original ten-gigabyte CSV file is available from NYC's open data:
 
