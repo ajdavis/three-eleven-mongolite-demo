@@ -1,6 +1,15 @@
+# Accompanying code example for article,
+#
+# https://emptysqua.re/blog/analyze-noise-complaints-r-mongodb-mongolite
+#
+# Download records of calls to NYC's complaint line, 3-1-1. Draw trend lines
+# for increase in call volume and proportion of noise complaints near my old
+# apartment on Orchard Street. Map noise complaint locations and contours of
+# complaint density.
+# 
 # Prerequisites: install mongolite, lubridate, dplyr, and ggmap.
 #
-# I've had issues with current ggmap, try an older version as a workaround:
+# I've had issues with current ggmap, try this workaround:
 #
 #   install.packages("devtools")
 #   devtools::install_github("dkahle/ggmap")
@@ -12,6 +21,13 @@ library(mongolite)
 library(dplyr)
 
 mdb <- mongo("three_eleven", url = "mongodb://localhost/test")
+mdb$drop()
+mdb$import(
+  url(paste0("https://raw.githubusercontent.com/ajdavis/",
+             "three-eleven-mongolite-demo/master/three_eleven.bson")),
+  bson = TRUE)
+
+mdb$index(add = '{"location": "2dsphere"}')
 
 get_complaints <- function(query) {
     res <- mdb$find(query)
